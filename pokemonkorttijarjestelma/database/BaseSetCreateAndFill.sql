@@ -34,7 +34,7 @@ INSERT INTO BaseSet(cardName, setNumber, PokemonType, cardType) VALUES ('Arcanin
 INSERT INTO BaseSet(cardName, setNumber, PokemonType, cardType) VALUES ('Charmeleon', '24/102', 'Fire', 'Pokemon');
 INSERT INTO BaseSet(cardName, setNumber, PokemonType, cardType) VALUES ('Dewgong', '25/102', 'Water', 'Pokemon');
 INSERT INTO BaseSet(cardName, setNumber, PokemonType, cardType) VALUES ('Dratini', '26/102', 'Colorless', 'Pokemon');
-INSERT INTO BaseSet(cardName, setNumber, PokemonType, cardType) VALUES ('Farfetch\'d', '27/102', 'Colorless', 'Pokemon');
+INSERT INTO BaseSet(cardName, setNumber, PokemonType, cardType) VALUES ('Farfetchd', '27/102', 'Colorless', 'Pokemon');
 INSERT INTO BaseSet(cardName, setNumber, PokemonType, cardType) VALUES ('Growlithe', '28/102', 'Fire', 'Pokemon');
 INSERT INTO BaseSet(cardName, setNumber, PokemonType, cardType) VALUES ('Haunter', '29/102', 'Psychic', 'Pokemon');
 INSERT INTO BaseSet(cardName, setNumber, PokemonType, cardType) VALUES ('Ivysaur', '30/102', 'Grass', 'Pokemon');
@@ -101,7 +101,7 @@ INSERT INTO BaseSet(cardName, setNumber, PokemonType, cardType) VALUES ('Super P
 INSERT INTO BaseSet(cardName, setNumber, PokemonType, cardType) VALUES ('Bill', '91/102', 'Trainer', 'Trainer');
 INSERT INTO BaseSet(cardName, setNumber, PokemonType, cardType) VALUES ('Energy Removal', '92/102', 'Trainer', 'Trainer');
 INSERT INTO BaseSet(cardName, setNumber, PokemonType, cardType) VALUES ('Gust of Wind', '93/102', 'Trainer', 'Trainer');
-INSERT INTO BaseSet(cardName, setNumber, PokemonType, cardType) VALUES ('Potion', 					'94/102', 'Trainer', 'Trainer');
+INSERT INTO BaseSet(cardName, setNumber, PokemonType, cardType) VALUES ('Potion', '94/102', 'Trainer', 'Trainer');
 INSERT INTO BaseSet(cardName, setNumber, PokemonType, cardType) VALUES ('Switch', '95/102', 'Trainer', 'Trainer');
 
 INSERT INTO BaseSet(cardName, setNumber, PokemonType, cardType) VALUES ('Double Colorless Energy', '96/102', 'Colorless', 'Energy');
