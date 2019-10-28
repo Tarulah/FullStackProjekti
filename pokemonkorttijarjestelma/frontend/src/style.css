@@ -1,0 +1,23 @@
+#signIn {
+    position:absolute;
+    text-align:center;
+    top:20%;
+    right:15%;
+    left:15%;   
+}
+
+form {
+    display: inline-block;    
+}
+
+img {
+    vertical-align: top;
+    }
+
+p{
+    display: inline;
+    }
+
+.settitesti {
+    margin-left: 10px;;
+}
