@@ -1,84 +1,142 @@
 const express = require('express');
 const bodyParser = require("body-parser");
-const mssql = require("mssql");
+const apiroutes = require("./routes/apiroutes");
+const bcrypt = require("bcrypt");
 
 let app = express();
 
+//User database
+const registeredUsers = [];
+const loggedUsers = [];
+const ttl = 1000*60*60;
+
 app.use(bodyParser.json());
 
-//Väliaikanen ratkaisu
-let cardset = "BaseSet";
-let cardId = 1;
-
-function getConfig(){
-	let config = {
-		user: '',
-		password: '',
-		server: 'localhost',
-		database: 'pokemonkorttisql'
-	};
+createToken = () => {
+	let token = ""
+	let letters = "abcdefghijABCDEFGHIJ0123456789"
 	
-	return config;
+	for(let i = 0; i < 512; i++){
+		let temp = Math.floor(Math.random() * 30);
+		token = token + letters[temp];
+	}
+	
+	return token;
 }
 
-//GET ONE CARD FROM A SET
-app.get("/cards/" + cardset + "/" + cardId, function(req, res) {
+isUserLogged = (req, res, next) => {
+	let token = req.headers.token;
+	if(!token) {
+		return res.status(403).json({message:"forbidden"});
+	}
 	
-	let config = getConfig();
-	
-	mssql.connect(config, function(err){
-		if(err){
-			console.log("Error while connecting to database: " + err);
-			return res.status(404).json({message:"not found"});
-		}
-		
-		let request = new mssql.Request();
-		
-		request.query('select * from ' + cardset + ' where id=\'' + cardId + '\'', function(err, recordset){
-			if(err){
-				console.log("Error with the query: " + err);
-				return res.status(404).json({message:"not found"});
+	for(let i = 0; i < loggedUsers.length; i++){
+		if(token === loggedUsers[i].token) {
+			let date = Date.now();
+			if(date > loggedUsers[i].ttl){
+				loggedUsers.splice(i, 1);
+				return res.status(403).json({message:"forbidden"});
 			}
 			
-			mssql.close();
-			return res.status(200).json(recordset);
-		});
-	});
-});
-
-//GET ALL CARDS OF A SET
-app.get("/cards/" + cardset, function(req, res) {
-	
-	let config = getConfig();
-	
-	mssql.connect(config, function(err){
-		if(err){
-			console.log("Error while connecting to database: " + err);
-			return res.status(404).json({message:"not found"});
+			loggedUsers[i].ttl = date+ttl;
+			req.session = {}
+			req.session.user = loggedUsers[i].user
+			return next();
 		}
-		
-		let request = new mssql.Request();
-		
-		request.query('select * from ' + cardset, function(err, recordset){
-			if(err){
-				console.log("Error with the query: " + err);
-				return res.status(404).json({message:"not found"});
-			}
-			
-			mssql.close();
-			return res.status(200).json(recordset);
-		});
+	}
+	
+	return res.status(403).json({message:"forbidden"});
+}
+
+//LOGIN API
+
+app.post("/register",function(req,res) {
+	if(!req.body) {
+		return res.status(422).json({message:"Please provide proper credentials"});
+	}
+	if(!req.body.username || !req.body.password) {
+		return res.status(422).json({message:"Please provide proper credentials"});		
+	}
+	if(req.body.username.length < 4 || req.body.password.length < 8) {
+		return res.status(422).json({message:"Please provide proper credentials"});	
+	}
+	bcrypt.hash(req.body.password,14,function(err,hash) {
+		if(err) {
+			return res.status(422).json({message:"Please provide proper credentials"});	
+		}
+		let user = {
+			username:req.body.username,
+			password:hash
+		}
+		for(let i=0;i<registeredUsers.length;i++) {
+			if(user.username === registeredUsers[i].username) {
+				return res.status(409).json({message:"Username already in use"});
+			}	
+		}
+		registeredUsers.push(user);
+		console.log(registeredUsers);
+		return res.status(200).json({message:"Register success!"});
 	});
-});
+})
 
-//POST
-app.post("/testi",function(req, res) {
+app.post("/login",function(req,res) {
+	if(!req.body) {
+		return res.status(422).json({message:"Please provide proper credentials"});
+	}
+	if(!req.body.username || !req.body.password) {
+		return res.status(422).json({message:"Please provide proper credentials"});		
+	}
+	if(req.body.username.length < 4 || req.body.password.length < 8) {
+		return res.status(422).json({message:"Please provide proper credentials"});	
+	}
+	let user = {
+		username:req.body.username,
+		password:req.body.password
+	}
+	let found = false;
+	for(let i=0;i<registeredUsers.length;i++) {
+		if(user.username === registeredUsers[i].username) {
+			found = true;
+			bcrypt.compare(req.body.password,registeredUsers[i].password,function(err,success) {
+				if(err) {
+					return res.status(403).json({message:"Username or password not correct"})					
+				}
+				if(!success) {
+					return res.status(403).json({message:"Username or password not correct"})	
+				}
+				//Create token
+				let token = createToken();
+				let temp = Date.now();			
+				loggedUsers.push({
+					user:user.username,
+					token:token,
+					ttl:temp+ttl
+				})
+				return res.status(200).json({token:token})
+			})
+			
+		} 
+	}
+	if(!found) {
+		return res.status(403).json({message:"Username or password not correct"})		
+	}
 
-});
+})
 
-//DELETE
+app.post("/logout",function(req,res) {
+	let token = req.headers.token;
+	if(!token) {
+		return res.status(404).json({message:"not found"});
+	}
+	for(let i=0;i<loggedUsers.length;i++) {
+		if(loggedUsers.token === token) {
+			loggedUsers.splice(i,1);
+			return res.status(200).json({message:"logged out"});
+		}
+	}
+	return res.status(404).json({message:"not found"});
+})
 
-//PUT
-
+app.use("/api",isUserLogged,apiroutes);
 
 app.listen(3001);
