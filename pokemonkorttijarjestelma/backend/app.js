@@ -1,63 +1,36 @@
 const express = require('express');
-var Connection = require('tedious').Connection;
-var Request = require('tedious').Request;
+const bodyParser = require("body-parser");
 
 let app = express();
 
 //Take stuff from database and put it into json file
 
-//TODO: toteuta jotenki vähän tietoturvallisemmin, ettei mene tiedot vahingossa gittiin
-var config = {
-	userName: '',
-	password: '',
-	server: 'localhost'
-};
+//Dummy Database
+let database = []
+let id = 100
 
-var connection = new Connection(config);
-
-//Open connection to the database
-connection.on('connect', function(err) {
-	if(err){
-		console.log(err);
-	} else {
-		executeStatement();
-	}
-});
-
-function executeStatement(){
-	request = new Request("select Alakazam from BaseSet, 'pokemonkorttisql'", function(err, rowCount){
-		if(err){
-			console.log(err);
-		} else {
-			console.log(rowCount + ' rows');
-		}
-		//close connection
-		connection.close();
-	});
-	
-	//go through the stuff from the database and put it to console.log
-	request.on('row', function(columns){
-		columns.forEach(function (column){
-			if(column.value === null){
-				console.log('NULL')
-			} else {
-				console.log(column.value)
-			}
-		})
-	})
-	
-	connection.execSql(request)
-}
-
+app.use(bodyParser.json());
 
 //GET
 //testi
-app.get("/", function(req, res) {
-	res.end("Testi testi");
+app.get("/testi", function(req, res) {
+	return res.status(200).json(database);
 });
 
-
 //POST
+app.post("/testi",function(req, res) {
+	let card = {
+		id:id,
+		cardName:req.body.cardName,
+		setNumber:req.body.setNumber,
+		pokemonType:req.body.pokemonType,
+		cardType:req.body.cardType
+	}
+	
+	database.push(card);
+	id++;
+	return res.status(200).json({message:"success"});
+});
 
 //DELETE
 
