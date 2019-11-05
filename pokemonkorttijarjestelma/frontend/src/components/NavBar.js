@@ -21,7 +21,7 @@ export default class NavBar extends React.Component {
             backgroundColor: "blue",
             padding: 10
         }
-        if (this.props.isLoading) {
+        if (this.props.isLogged) {
             return (
                 <div style={style}>
                     <List>
@@ -29,6 +29,8 @@ export default class NavBar extends React.Component {
                         <List.Item><Link to="/login">Log In</Link></List.Item>
                         <List.Item><Link to="/sets">Sets</Link></List.Item>
                         <List.Item><Link to="/data">Data</Link></List.Item>
+                        <List.Item><Link to="/"
+                        onClick={this.logout}>Logout</Link></List.Item>
                     </List>
                 </div>
             )
