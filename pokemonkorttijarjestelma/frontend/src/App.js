@@ -3,8 +3,11 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { } from 'react-router-dom';
 import NavBar from './components/NavBar';
+//import NavBar2 from './components/NavBar2';
 import LogIn from './components/LogIn';
-//import Info from './components/Info';
+import Info from './components/Info';
+import Sets from './components/Sets';
+import Cards from './components/Cards';
 import './App.css';
 
 class App extends React.Component {
@@ -17,16 +20,26 @@ class App extends React.Component {
       isLogged:false
     }
   }
-
   
 render() {
   return (
     <div className="App">
       <NavBar/>
       <LogIn />
-      
+      <br>
+      </br>
+      <hr></hr>
+      <Info />
+      <br>
+      </br>
+      <hr></hr>
+      <Sets />
+      <br>
+      </br>
+      <hr></hr>
     </div>
   )
 }
 }
 export default App;
+
