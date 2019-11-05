@@ -29,6 +29,7 @@ export default class LoginIn extends React.Component {
         if (event.target.name === "register") {
             this.props.register(user);
         } else {
+            console.log("user: " + user.username);
             this.props.login(user);
         }
     }
@@ -60,6 +61,8 @@ export default class LoginIn extends React.Component {
                     </Form.Field>
                     <Button onClick={this.submit}
                         name="register">Register</Button>
+                        <br></br>
+                        <br></br>
                     <Button onClick={this.submit}
                         name="login">Log In</Button>
                 </Form>
