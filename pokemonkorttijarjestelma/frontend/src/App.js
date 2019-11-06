@@ -26,7 +26,7 @@ class App extends React.Component {
       let state = JSON.parse(sessionStorage.getItem("state"));
       this.setState(state, () => {
         if (this.state.isLogged) {
-          this.getList();
+          //this.getList();
         }
       });
     }
@@ -92,20 +92,18 @@ class App extends React.Component {
       body: JSON.stringify(user)
     }
     fetch("/login", request).then((response) => {
-      console.log("request " + request.JSON);
       console.log("response " + response.statusText);
       if (response.ok) {
-        console.log("testi2");
         response.json().then(data => {
           this.setState({
             token: data.token,
             isLogged: true
           }, () => {
-            this.getList();
+            //this.getList();
             this.saveToStorage();
           })
         }).catch((error) => {
-          console.log("JSON parse failed withn error:" + error);
+          console.log("JSON parse failed with error:" + error);
         })
       } else {
         console.log("Server responded with status:" + response.status);
@@ -146,6 +144,40 @@ class App extends React.Component {
     })
   }
 
+
+
+
+  getList = () => {
+    let request = {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-type": "application/json",
+        "token": this.token
+      }
+    }
+    fetch("/login", request).then((response) => {
+      if (response.ok) {
+        response.json().then((data) => {
+          this.setState({
+            list: data
+          }, () => {
+            this.saveToStorage();
+          })
+        }).catch((error) => {
+          console.log("Failed to handle JSON:" + error);
+        });
+      } else {
+        if (response.status === 403) {
+          this.sessionExpired();
+        }
+        console.log("Server responded with status:" + response.status);
+      }
+    }).catch((error) => {
+      console.log("Server responded with status" + error);
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -155,10 +187,8 @@ class App extends React.Component {
         <hr />
         <Switch>
           <Route exact path="/" render={
-            () => this.state.isLogged ?
-              (<Redirect to="/list" />) :
-              (<LogIn login={this.login}
-                register={this.register} />)
+            () => <LogIn login={this.login}
+                register={this.register} />
           } />
           <Route render={() => <Redirect to="/" />} />
         </Switch>
