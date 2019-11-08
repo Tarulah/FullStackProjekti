@@ -190,7 +190,7 @@ class App extends React.Component {
             () => this.state.isLogged ? (<Redirect to = "/sets"/>) :
 			(<LogIn login={this.login} register={this.register} /> )
           } />
-          <Route render={() => <Redirect to="/" />} />
+          />
         </Switch>
 
       </div>
