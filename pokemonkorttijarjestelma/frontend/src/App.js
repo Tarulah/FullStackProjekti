@@ -187,8 +187,8 @@ class App extends React.Component {
         <hr />
         <Switch>
           <Route exact path="/" render={
-            () => <LogIn login={this.login}
-                register={this.register} />
+            () => this.state.isLogged ? (<Redirect to = "/sets"/>) :
+			(<LogIn login={this.login} register={this.register} /> )
           } />
           <Route render={() => <Redirect to="/" />} />
         </Switch>
