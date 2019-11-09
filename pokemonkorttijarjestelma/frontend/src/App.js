@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import LogIn from './components/LogIn';
-//import Info from './components/Info';
-//import Sets from './components/Sets';
+import Sets from './components/Sets';
+import Info from './components/Info';
 //import Cards from './components/Cards';
 import './App.css';
 
@@ -187,9 +187,23 @@ class App extends React.Component {
         <hr />
         <Switch>
           <Route exact path="/" render={
-            () => this.state.isLogged ? (<Redirect to = "/sets"/>) :
-			(<LogIn login={this.login} register={this.register} /> )
+            () => this.state.isLogged ? (<Redirect to="/sets" />) :
+              (<LogIn login={this.login} register={this.register} />)
           } />
+          <Route path="/sets" render={
+            () => this.state.isLogged ?
+            (<Sets list={this.state.list}
+              removeFromList={this.removeFromList}
+              editItem={this.editItem}/>):
+              (<Redirect to="/"/>)
+          }/>
+          <Route path="/info" render={
+            () => this.state.isLogged ?
+            (<Info list={this.stateList}
+              removeFromList={this.removeFromList}
+              editItem={this.editItem}/>):
+              (<Redirect to="/"/>)
+          }/>
           />
         </Switch>
 
