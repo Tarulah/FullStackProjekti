@@ -1,7 +1,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Link } from 'react-router-dom';
-import { List, Header } from 'semantic-ui-react';
+import { List, Header, Button } from 'semantic-ui-react';
+import Nav from 'react-bootstrap/Nav';
 
 
 export default class NavBar extends React.Component {
@@ -21,16 +22,17 @@ export default class NavBar extends React.Component {
             backgroundColor: "blue",
             padding: 10
         }
+
         if (this.props.isLogged) {
             return (
                 <div style={style}>
-                    <List>
-                        <Header>{header}</Header>
-                        <List.Item><Link to="/sets">Sets</Link></List.Item>
-                        <List.Item><Link to="/info">Info</Link></List.Item>
-                        <List.Item><Link to="/"
-                        onClick={this.logout}>Logout</Link></List.Item>
-                    </List>
+                    <Nav activeKey="/home"
+                    onSelect={selectedKey => alert(`selected ${selectedKey}`)}>                    
+                        <Nav.Item><Link to="/sets">Sets</Link></Nav.Item>
+                        <Nav.Item><Link to="/info">Info</Link></Nav.Item>              
+                        <Button onClick={this.logout}
+                        class="ulos" name="login">Log Out</Button>
+                    </Nav>
                 </div>
             )
         } else {
