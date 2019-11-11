@@ -184,7 +184,6 @@ class App extends React.Component {
         <NavBar isLogged={this.state.isLogged}
           logout={this.logout}
           loading={this.state.loading} />
-        <hr />
         <Switch>
           <Route exact path="/" render={
             () => this.state.isLogged ? (<Redirect to="/sets" />) :
