@@ -26,7 +26,6 @@ export default class NavBar extends React.Component {
                 <div style={style}>
                     <List>
                         <Header>{header}</Header>
-                        <List.Item><Link to="/login">Log In</Link></List.Item>
                         <List.Item><Link to="/sets">Sets</Link></List.Item>
                         <List.Item><Link to="/info">Info</Link></List.Item>
                         <List.Item><Link to="/"
