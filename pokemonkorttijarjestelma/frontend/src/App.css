@@ -20,3 +20,18 @@
 .App-link {
   color: #09d3ac;
 }
+
+a {
+  color: white;
+  font-size: 15px;
+  padding: 15px;
+}
+
+button.ui.sm.button {
+  background-color:white;
+  padding: 10px;
+  float: right;
+  position: fixed;
+  right: 10px;
+  top: 8px;
+}
