@@ -6,7 +6,7 @@ import NavBar from './components/NavBar';
 import LogIn from './components/LogIn';
 import Sets from './components/Sets';
 import Info from './components/Info';
-//import Cards from './components/Cards';
+import Cards from './components/Cards';
 import './App.css';
 
 class App extends React.Component {
@@ -203,6 +203,13 @@ class App extends React.Component {
               editItem={this.editItem}/>):
               (<Redirect to="/"/>)
           }/>
+          <Route path="/cards" render={
+            () => this.state.isLogged ?
+            (<Cards list={this.stateList}
+              removeFromList={this.removeFromList}
+              editItem={this.editItem}/>):
+              (<Redirect to="/"/>)
+            }/>
           />
         </Switch>
 
