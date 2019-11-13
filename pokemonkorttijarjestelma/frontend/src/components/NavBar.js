@@ -28,11 +28,12 @@ export default class NavBar extends React.Component {
                 <div style={style}>
                     <Nav >                    
                         <Nav.Item><Link to="/sets">Sets</Link></Nav.Item>
-                        <Nav.Item><Link to="/info">Info</Link></Nav.Item>                  
+                        <Nav.Item><Link to="/info">Info</Link></Nav.Item>  
+                        <Nav.Item><Link to="/cards">Cards</Link></Nav.Item>                  
                         </Nav>
                     <Form >
                     <Button onClick={this.logout}
-                        size="sm">Log Out</Button>
+                        size="small">Log Out</Button>
                     </Form>
                     
                 </div>
