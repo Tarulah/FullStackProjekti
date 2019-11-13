@@ -19,7 +19,7 @@ function getConfig(){
 }
 
 //GET ONE CARD FROM A SET
-router.get("/cards/" + cardset + "/" + cardId, function(req, res) {
+router.get("/sets/" + cardset + "/" + cardId, function(req, res) {
 	
 	let config = getConfig();
 	
@@ -44,7 +44,7 @@ router.get("/cards/" + cardset + "/" + cardId, function(req, res) {
 });
 
 //GET ALL CARDS OF A SET
-router.get("/cards/" + cardset, function(req, res) {
+router.get("/sets/" + cardset, function(req, res) {
 	
 	let config = getConfig();
 	
