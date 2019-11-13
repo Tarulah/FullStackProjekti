@@ -156,7 +156,7 @@ class App extends React.Component {
         "token": this.token
       }
     }
-    fetch("/login", request).then((response) => {
+    fetch("/api/sets/BaseSet", request).then((response) => {
       if (response.ok) {
         response.json().then((data) => {
           this.setState({
@@ -189,25 +189,20 @@ class App extends React.Component {
             () => this.state.isLogged ? (<Redirect to="/sets" />) :
               (<LogIn login={this.login} register={this.register} />)
           } />
-          <Route path="/sets" render={
+		  
+		  <Route exact path="/sets" render={
             () => this.state.isLogged ?
-            (<Sets list={this.state.list}
-              removeFromList={this.removeFromList}
-              editItem={this.editItem}/>):
+            (<Sets name="BaseSet" list={this.state.list} />):
               (<Redirect to="/"/>)
-          }/>
+          }/>	  
           <Route path="/info" render={
             () => this.state.isLogged ?
-            (<Info list={this.stateList}
-              removeFromList={this.removeFromList}
-              editItem={this.editItem}/>):
+            (<Info list={this.stateList}/>):
               (<Redirect to="/"/>)
           }/>
           <Route path="/cards" render={
             () => this.state.isLogged ?
-            (<Cards list={this.stateList}
-              removeFromList={this.removeFromList}
-              editItem={this.editItem}/>):
+            (<Cards list={this.stateList}/>):
               (<Redirect to="/"/>)
             }/>
           />

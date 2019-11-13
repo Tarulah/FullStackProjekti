@@ -137,6 +137,6 @@ app.post("/logout",function(req,res) {
 	return res.status(404).json({message:"not found"});
 })
 
-app.use("/api",isUserLogged,apiroutes);
+app.use("/api", isUserLogged, apiroutes);
 
 app.listen(3001);
