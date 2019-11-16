@@ -3,18 +3,13 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 //import { List } from 'semantic-ui-react';
 import ListGroup from 'react-bootstrap/ListGroup';
-import {Switch, Route} from 'react-router-dom';
-import SingleSets from './SingleSets';
+import { Link } from 'react-router-dom';
 
 export default class Sets extends React.Component {
 	
-	/*constructor(props) {
-		super(props);
-		this.state = {
-			name,
-			id
-		}
-	}*/
+	testi = () => {
+		console.log("testi");
+	}
 	
     render() {
         let style = {
@@ -28,9 +23,9 @@ export default class Sets extends React.Component {
 
             <div style={style}>
                 <ListGroup>
-					<ListGroup.Item name={this.props.name} action href={"/sets/" + this.props.name}>Base Set</ListGroup.Item>
+					<ListGroup.Item name={this.props.name}><Link to={'/sets/'+this.props.name}>BaseSet</Link></ListGroup.Item>
 				</ListGroup>
             </div>
-        )
+        );
     }
 }
