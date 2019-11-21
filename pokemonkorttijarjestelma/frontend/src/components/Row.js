@@ -1,15 +1,15 @@
 import React from 'react';
-import {Table} from 'semantic-ui-react';
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default class Row extends React.Component {
 	
 	render() {
 		return (
-			<Table.Row>
-				<Table.Cell>{this.props.card.cardName}</Table.Cell>
-				<Table.Cell>{this.props.card.PokemonType}</Table.Cell>
-				<Table.Cell>{this.props.card.setNumber}</Table.Cell>
-			</Table.Row>
+			<tr>
+				<td>{this.props.card.cardName}</td>
+				<td>{this.props.card.PokemonType}</td>
+				<td>{this.props.card.setNumber}</td>
+			</tr>
 		)
 	}
 }
