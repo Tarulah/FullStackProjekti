@@ -99,7 +99,7 @@ class App extends React.Component {
             token: data.token,
             isLogged: true
           }, () => {
-            //this.getList();
+            this.getList();
             this.saveToStorage();
           })
         }).catch((error) => {
@@ -150,7 +150,7 @@ class App extends React.Component {
       mode: "cors",
       headers: {
         "Content-type": "application/json",
-        "token": this.token
+        "token": this.state.token
       }
     }
     fetch("/api/sets/BaseSet", request).then((response) => {
