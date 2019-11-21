@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import Row from './Row';
+import { Table } from 'react-bootstrap';
 
 
 export default class SingleSets extends React.Component{
@@ -43,7 +44,7 @@ export default class SingleSets extends React.Component{
         return (
 
             <div style={style}>
-                <table>
+                <Table striped bordered hover>
 					<thead>
 						<tr>
 							<th>Name</th>
@@ -54,7 +55,7 @@ export default class SingleSets extends React.Component{
 					<tbody>
 					{items}
 					</tbody>
-				</table>
+				</Table>
             </div>
         )
     }
