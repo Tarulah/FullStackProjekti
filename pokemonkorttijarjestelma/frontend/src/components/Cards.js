@@ -9,60 +9,21 @@ export default class Cards extends React.Component {
         return (
             <div>
                 <Container>
-                    <Row class="justify-content-xs-center">
-                        <Col xs="2">
-                            <img src={""} alt=""></img>
-                        </Col>
-                        <Col xs="2">
-                            <Row>
-                                <h4>Jungle</h4>
-                            </Row>
-                            <Row>
-                                <p>Clefable</p>
-                            </Row>
-                            <Row>
-                                <p>1/64</p>
-                            </Row>
-                            <Row>
-                                <p>holo</p>
-                            </Row>
-                        </Col>
-                    </Row>
                     <br></br>
-                    <Row class="justify-content-xs-center">
-                        <Col xs="2">
-                            <img src={""} alt=""></img>
-                        </Col>
-                        <Col xs="2">
-                            <Row>
-                                <h4>Jungle</h4>
-                            </Row>
-                            <Row>
-                                <p>Clefable</p>
-                            </Row>
-                            <Row>
-                                <p>1/64</p>
-                            </Row>
-                            <Row>
-                                <p>holo</p>
-                            </Row>
-                        </Col>
-                    </Row>
-                    <hr></hr>
-                    <div class="d-flex justify-content-center">
+                    <div className="d-flex justify-content-center">
                         <Col xs="2"><img src={""} alt=""></img></Col>
                         <Col xs="2">
                             <Row>
-                                <h4>Jungle</h4>
+                                <h4>Base Set</h4>
                             </Row>
                             <Row>
-                                <p>Clefable</p>
+                                <p>Alakazam</p>
                             </Row>
                             <Row>
-                                <p>1/64</p>
+                                <p>Psychic</p>
                             </Row>
                             <Row>
-                                <p>holo</p>
+                                <p>1/104</p>
                             </Row>
                         </Col>
                     </div>
