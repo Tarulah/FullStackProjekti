@@ -6,7 +6,7 @@ import Row from './Row';
 export default class SingleSets extends React.Component{
 	
 	//this.props.list sisälsi vähän kaikenlaista ylimääräistä.
-	//Tällä putsataan se ylimääräinen pois ja saadaan puhdas objekti, jossa on vai setin kortit
+	//Tällä putsataan se ylimääräinen pois ja saadaan puhdas objekti, jossa on vain setin kortit
 	getSetObject = () => {
 		let data = this.props.list;
 		
