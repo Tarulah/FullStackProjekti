@@ -38,8 +38,9 @@ button.ui.small.button {
 
 div.ui.header {
   text-align: center;
+  color: white;
 }
 
 div.list-group-item {
-  background-color: rgba(0, 153, 255, 0.849);
+  background-color: rgba(33, 108, 170, 0.575);
 }
