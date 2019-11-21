@@ -7,10 +7,6 @@ import { Link } from 'react-router-dom';
 
 export default class Sets extends React.Component {
 	
-	testi = () => {
-		console.log("testi");
-	}
-	
     render() {
         let style = {
             margin: 10,

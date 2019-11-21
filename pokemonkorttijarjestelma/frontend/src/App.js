@@ -154,7 +154,6 @@ class App extends React.Component {
       }
     }
     fetch("/api/sets/BaseSet", request).then((response) => {
-		console.log(response);
       if (response.ok) {
         response.json().then((data) => {
           this.setState({
