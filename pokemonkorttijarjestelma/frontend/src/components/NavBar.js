@@ -19,7 +19,7 @@ export default class NavBar extends React.Component {
 
         let style = {
             height: 50,
-            backgroundColor: "blue",
+            backgroundColor: 'rgba(33, 108, 170, 0.99)',
             padding: 15
         }
 
