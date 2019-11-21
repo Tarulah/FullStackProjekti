@@ -35,3 +35,11 @@ button.ui.small.button {
   right: 10px;
   top: 8px;
 }
+
+div.ui.header {
+  text-align: center;
+}
+
+div.list-group-item {
+  background-color: rgba(0, 153, 255, 0.849);
+}
